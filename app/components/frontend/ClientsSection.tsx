@@ -14,8 +14,12 @@ import {
     School
 } from 'lucide-react';
 
+type ClientsSectionProps = {
+  className?: string;
+};
 
-const ClientsSection = () => {
+
+const ClientsSection = ({ className = '' }: ClientsSectionProps) => {
   const clients1 = [
     { line1: 'সেন্ট জোসেফ', line2: 'উচ্চ বিদ্যালয়', icon: Building2, tone: 'bg-amber-50 text-amber-500' },
     { line1: 'দিনাজপুর জিলা', line2: 'স্কুল', icon: BookOpen, tone: 'bg-purple-50 text-purple-500' },
