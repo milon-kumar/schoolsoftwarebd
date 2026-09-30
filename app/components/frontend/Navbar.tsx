@@ -262,9 +262,9 @@ const Navbar = () => {
           </ul>
           
           <div className="flex items-center gap-3 sm:gap-5">
-            <a href="#" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
-              লগইন
-            </a>
+            <Link href="/register" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
+              যোগ দিন
+            </Link>
             <a
               href="https://web.schoolsoftwarebd.com" target='_blank'
               className="hidden items-center gap-2 rounded-full bg-[#0F172A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 sm:inline-flex"

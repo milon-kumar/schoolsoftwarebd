@@ -1,6 +1,7 @@
 "use client"
 
 import ClientsSection from '@/app/components/frontend/ClientsSection';
+import DemoSection from '@/app/components/frontend/DemoSection';
 import {
   ArrowRight,
   Bell,
@@ -32,20 +33,25 @@ import type { CSSProperties } from 'react';
 
 const delay = (ms: number) => ({ '--reveal-delay': `${ms}ms` }) as CSSProperties;
 
+
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-[#0F172A] pb-32 lg:pb-44">
+    <section className="relative overflow-hidden bg-[#0F172A] pb-40 md:pb-32 lg:pb-44">
+      {/* Background Glows */}
       <div className="pointer-events-none absolute -left-52 -top-52 h-[760px] w-[760px] rounded-full bg-[#6366F1]/25 blur-[160px]"></div>
       <div className="pointer-events-none absolute -bottom-52 -right-52 h-[760px] w-[860px] rounded-full bg-[#F43F5E]/20 blur-[170px]"></div>
-
+ 
+      {/* Hero Content */}
+      {/* Navbar এখন layout-এ absolute, জায়গা নেয় না — তাই উপরের padding-এ navbar-এর উচ্চতা (~100px) যোগ করা হয়েছে */}
       <div className="container-x relative z-10 flex flex-col items-center gap-16 pt-44 lg:flex-row lg:items-start lg:justify-between lg:pt-52">
-        <div className="max-w-[820px]">
+        {/* Left Column */}
+        <div className="max-w-[920px]">
           <span data-reveal className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm text-slate-300">
             <span className="h-2 w-2 rounded-full bg-[#F43F5E]"></span>
             স্কুল, কলেজ ও মাদ্রাসার আধুনিক সমাধান
           </span>
-
-          <h1 data-reveal style={delay(120)} className="mt-8 text-[42px] font-bold leading-[1.15] sm:text-6xl sm:leading-[1.15] lg:text-[72px]">
+ 
+          <h1 data-reveal style={delay(120)} className="mt-8 text-[40px] font-bold leading-[1.15] sm:text-6xl sm:leading-[1.15] lg:text-[70px]">
             <span className="block pb-2 text-white">স্কুল চালান সহজে।</span>
             <span className="block bg-gradient-to-r from-[#6366F1] via-violet-400 to-pink-500 bg-clip-text pb-2 text-transparent">
               School Management
@@ -54,13 +60,13 @@ const HeroSection = () => {
               Software BD
             </span>
           </h1>
-
+ 
           <p data-reveal style={delay(240)} className="mt-8 max-w-[720px] text-base leading-7 text-[#9CA3AF] sm:text-[18px] sm:leading-[29px]">
             ভর্তি। হাজিরা। রেজাল্ট। ফি কালেকশন। সব এক জায়গায়। আমাদের School Management System দিয়ে আপনার স্কুল, কলেজ বা মাদ্রাসা চালান আরও সহজে। কাগজ লাগবে না। ভুল হবে না। সময় বাঁচবে।
           </p>
-
+ 
           <div data-reveal style={delay(360)} className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#" className="btn btn-primary">
+            <a href="#demo" className="btn btn-primary">
               সফটওয়্যার ডেমো <Rocket className="h-5 w-5" />
             </a>
             <a href="#contact" className="btn btn-outline">
@@ -68,13 +74,13 @@ const HeroSection = () => {
             </a>
           </div>
         </div>
-
+ 
         {/* Right Visual Dashboard Cards */}
         <div data-reveal style={delay(300)} className="relative -mt-4 hidden h-[460px] w-[420px] shrink-0 lg:block">
           {/* Decorative Rings */}
           <div className="absolute left-2 top-20 h-[310px] w-[390px] rounded-full border border-white/10"></div>
           <div className="absolute left-[64px] top-10 h-[290px] w-[260px] rounded-full border border-white/10"></div>
-
+ 
           {/* Students Count Card */}
           <div className="absolute right-0 top-0 w-[330px] rotate-[3deg] rounded-2xl border border-white/10 bg-[#161d33]/90 p-6 shadow-2xl backdrop-blur">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -90,7 +96,7 @@ const HeroSection = () => {
               <div className="h-[44px] w-11 rounded-sm bg-indigo-800"></div>
             </div>
           </div>
-
+ 
           {/* Fee Collection Card */}
           <div className="absolute bottom-8 left-0 w-[255px] -rotate-[6deg] rounded-2xl border border-white/10 bg-[#161d33]/90 p-5 shadow-2xl backdrop-blur">
             <div className="flex items-center gap-3.5">
@@ -111,12 +117,13 @@ const HeroSection = () => {
     </section>
   );
 };
-
+ 
 const StatsSection = () => {
   return (
-    <section className="dot-pattern relative pb-10">
+    // flow-root: card-এর negative margin যেন section-কে টেনে উপরে না নেয় (margin collapse বন্ধ)
+    <section className="dot-pattern relative flow-root pb-10">
       <div className="container-x">
-        <div data-reveal className="relative z-10 -mt-12 grid grid-cols-2 gap-x-4 gap-y-8 rounded-3xl border border-white bg-gradient-to-b from-slate-300 via-white to-white px-5 py-8 shadow-xl sm:px-10 md:grid-cols-4">
+        <div data-reveal className="relative z-10 -mt-[110px] grid sm:-mt-[105px] md:-mt-[75px] xl:-mt-[61px] grid-cols-2 gap-x-4 gap-y-8 rounded-3xl border border-white bg-gradient-to-b from-slate-300 via-white to-white px-5 py-8 shadow-xl sm:px-10 md:grid-cols-4">
           <div className="flex items-center gap-3 sm:gap-4 md:border-r md:border-slate-200">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#6366F1]/10 sm:h-14 sm:w-14">
               <Building2 className="h-6 w-6 text-[#6366F1]" />
@@ -126,7 +133,7 @@ const StatsSection = () => {
               <p className="text-sm text-[#4B5563]">নিবন্ধিত স্কুল/কলেজ</p>
             </div>
           </div>
-
+ 
           <div className="flex items-center gap-3 sm:gap-4 md:border-r md:border-slate-200 md:pl-10">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#10B981]/10 sm:h-14 sm:w-14">
               <GraduationCap className="h-6 w-6 text-[#10B981]" />
@@ -136,7 +143,7 @@ const StatsSection = () => {
               <p className="text-sm text-[#4B5563]">শিক্ষার্থী</p>
             </div>
           </div>
-
+ 
           <div className="flex items-center gap-3 sm:gap-4 md:border-r md:border-slate-200 md:pl-10">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 sm:h-14 sm:w-14">
               <Presentation className="h-6 w-6 text-amber-500" />
@@ -146,7 +153,7 @@ const StatsSection = () => {
               <p className="text-sm text-[#4B5563]">শিক্ষক</p>
             </div>
           </div>
-
+ 
           <div className="flex items-center gap-3 sm:gap-4 md:pl-10">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#F43F5E]/10 sm:h-14 sm:w-14">
               <Users className="h-6 w-6 text-[#F43F5E]" />
@@ -161,7 +168,6 @@ const StatsSection = () => {
     </section>
   );
 };
-
 const WhySection = () => {
   return (
     <section id="about" className="dot-pattern pb-20 pt-12 lg:pb-24">
@@ -655,6 +661,7 @@ export default function App() {
       <HeroSection />
       <StatsSection />
       <WhySection />
+      <DemoSection />
       <ModulesSection />
       <DashboardSection />
       <WhyChooseUsSection />
