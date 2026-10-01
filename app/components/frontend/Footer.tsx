@@ -7,6 +7,7 @@ import {
     Rocket
 } from 'lucide-react';
 
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -28,9 +29,9 @@ const Footer = () => {
           <p className="section-desc text-[#9CA3AF]">
             আজই আমাদের সাথে যোগাযোগ করুন এবং ১ মাসের ফ্রি ট্রায়াল উপভোগ করুন।
           </p>
-          <a href="#" className="btn btn-primary mt-10">
+          <Link href="/register#register" className="btn btn-primary mt-10">
             এখনই ডেমো রিকোয়েস্ট করুন <Rocket className="h-5 w-5" />
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -39,7 +40,7 @@ const Footer = () => {
         <div className="grid gap-10 pb-14 pt-6 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Info */}
           <div>
-            <a href="#top" className="flex items-center gap-1.5">
+            <Link href="/" className="flex items-center gap-1.5">
               <svg className="h-9 w-9" viewBox="0 0 40 40" fill="none">
                 <path d="M20 4l14 8v4H6v-4l14-8z" fill="#1e7a8c" />
                 <rect x="9" y="17" width="4" height="13" fill="#2f9aa8" />
@@ -54,12 +55,12 @@ const Footer = () => {
                 </p>
                 <p className="mt-0.5 text-[9px] text-[#9CA3AF]">www.schoolsoftwarebd.com</p>
               </div>
-            </a>
+            </Link>
             <p className="mt-5 text-sm text-[#9CA3AF]">
               <span className="font-semibold text-slate-300">“School SoftwareBD”</span> বাংলাদেশের স্কুল, কলেজ, মাদ্রাসা ও কোচিং সেন্টারের জন্য তৈরি একটি ক্লাউড-ভিত্তিক School Management Software। ভর্তি থেকে রেজাল্ট, ফি কালেকশন থেকে স্টাফ ম্যানেজমেন্ট — সব এক জায়গায়। সম্পূর্ণ বাংলায়। বাংলাদেশের বাস্তবতার কথা মাথায় রেখে।
             </p>
             <div className="mt-6 flex gap-2.5">
-              <a
+              <Link
                 href="#"
                 aria-label="Facebook"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-[#9CA3AF]/60 text-[#9CA3AF] transition hover:border-[#6366F1] hover:text-[#6366F1]"
@@ -67,8 +68,8 @@ const Footer = () => {
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.88h-2.34v7A10 10 0 0 0 12 2z" />
                 </svg>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 aria-label="X"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-[#9CA3AF]/60 text-[#9CA3AF] transition hover:border-[#6366F1] hover:text-[#6366F1]"
@@ -76,8 +77,8 @@ const Footer = () => {
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z" />
                 </svg>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 aria-label="YouTube"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-[#9CA3AF]/60 text-[#9CA3AF] transition hover:border-[#6366F1] hover:text-[#6366F1]"
@@ -85,7 +86,7 @@ const Footer = () => {
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -94,29 +95,29 @@ const Footer = () => {
             <h3 className="text-base font-bold text-white">আমাদের সম্পর্কে</h3>
             <ul className="mt-5 space-y-3 text-sm text-[#9CA3AF]">
               <li>
-                <a href="#top" className="transition hover:text-[#6366F1]">
+                <Link href="#top" className="transition hover:text-[#6366F1]">
                   মূল পাতা
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#modules" className="transition hover:text-[#6366F1]">
+                <Link href="#modules" className="transition hover:text-[#6366F1]">
                   মডিউল
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="transition hover:text-[#6366F1]">
+                <Link href="#about" className="transition hover:text-[#6366F1]">
                   আমাদের সম্পর্কে
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   রিটার্ন এবং রিফান্ড নীতি
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   গোপনীয়তা নীতি
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -126,29 +127,29 @@ const Footer = () => {
             <h3 className="text-base font-bold text-white">বৈশিষ্ট্য</h3>
             <ul className="mt-5 space-y-3 text-sm text-[#9CA3AF]">
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   ব্যবহার করা সহজ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   সবসময় আপ টু ডেট
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   ডিজিটাল হাজিরা সিস্টেম
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   শিক্ষার্থীদের পড়াশোনার বেতন আদায়
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-[#6366F1]">
+                <Link href="#" className="transition hover:text-[#6366F1]">
                   ইন্টিগ্রেটেড এসএমএস
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -163,15 +164,15 @@ const Footer = () => {
               </li>
               <li className="flex gap-2.5">
                 <Mail className="mt-1 h-4 w-4 shrink-0 text-[#6366F1]" />
-                <a href="mailto:info@schoolsoftwarebd.com" className="transition hover:text-[#6366F1]">
+                <Link href="mailto:info@schoolsoftwarebd.com" className="transition hover:text-[#6366F1]">
                   info@schoolsoftwarebd.com
-                </a>
+                </Link>
               </li>
               <li className="flex gap-2.5">
                 <Phone className="mt-1 h-4 w-4 shrink-0 text-[#6366F1]" />
-                <a href="tel:+8801857770000" className="transition hover:text-[#6366F1]">
+                <Link href="tel:+8801857770000" className="transition hover:text-[#6366F1]">
                   +৮৮০ ১৮৫৭ ৭৭০০০০
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
