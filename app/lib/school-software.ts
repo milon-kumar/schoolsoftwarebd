@@ -1,61 +1,98 @@
 /**
- * ডেমো ও রেজিস্ট্রেশনের সব সেটিং এক জায়গায়।
- * URL বদলাতে .env.local-এ লিখুন:
- *   NEXT_PUBLIC_DEMO_BASE_URL=https://demo.schoolsoftwarebd.com
- *   SCHOOL_API_BASE_URL=https://cp.schoolsoftwarebd.com/api      (শুধু server-এ ব্যবহার হয়)
+ * ডেমো, টেমপ্লেট ও রেজিস্ট্রেশনের সব সেটিং এক জায়গায়।
+ * ---------------------------------------------------------------
+ * ডোমেইন নিজে থেকেই ঠিক হয়:
+ *   npm run dev   (development)  → http://xxx.schoolsoftwarebd.test
+ *   npm run build (production)   → https://xxx.schoolsoftwarebd.com
+ *
+ * জোর করে বদলাতে চাইলে .env.local-এ লিখুন (যেমন local-এ production build টেস্ট করার সময়):
+ *   NEXT_PUBLIC_APP_TLD=test          # অথবা com
+ *   NEXT_PUBLIC_APP_PROTOCOL=http     # অথবা https
+ *   SCHOOL_API_BASE_URL=https://cp.schoolsoftwarebd.com/api   (শুধু server-এ ব্যবহার হয়)
  */
 
-export const DEMO_BASE_URL = (process.env.NEXT_PUBLIC_DEMO_BASE_URL ?? 'https://demo.schoolsoftwarebd.com').replace(/\/$/, '');
+/* ------------------------------ domain ------------------------------ */
+const IS_PROD = process.env.NODE_ENV === 'production';
+const TLD = process.env.NEXT_PUBLIC_APP_TLD ?? (IS_PROD ? 'com' : 'test');
+const PROTOCOL = process.env.NEXT_PUBLIC_APP_PROTOCOL ?? (TLD === 'com' ? 'https' : 'http');
 
-export type DemoRoleKey = 'school-portal' | 'admin' | 'teacher' | 'student';
+/** siteUrl('admin', '/login') → http://admin.schoolsoftwarebd.test/login */
+export const siteUrl = (subdomain: string, path = '') => `${PROTOCOL}://${subdomain}.schoolsoftwarebd.${TLD}${path}`;
 
-export type DemoRole = {
-  key: DemoRoleKey;
+/* ---------------------------- frontend templates ---------------------------- */
+/** কোন ডেমো স্কুলের সাইটে টেমপ্লেট প্রিভিউ দেখানো হবে */
+export const TEMPLATE_DEMO_SCHOOL = 'nondomohol';
+
+export type FrontendTemplate = {
   title: string;
-  subtitle: string;
-  /** লগইন লাগলে ইউজারনেম/পাসওয়ার্ড, না লাগলে সরাসরি path */
-  username?: string;
-  password?: string;
-  path?: string;
+  slug: string;
+  description: string;
+  /** প্রিভিউ ছবি — Next.js-এর public/ ফোল্ডার থেকে */
+  image: string;
 };
 
-export const DEMO_ROLES: DemoRole[] = [
+const img = (slug: string) => `/assets/frontend_templates/${slug}.png`;
+
+export const FRONTEND_TEMPLATES: FrontendTemplate[] = [
   {
-    key: 'school-portal',
-    title: 'School Portal',
-    subtitle: 'পাবলিক স্কুল ওয়েবসাইট, নোটিশ ও ভর্তি তথ্য',
-    path: '/home',
+    title: 'Lumin',
+    slug: 'lumin',
+    description: 'আধুনিক ও পরিষ্কার ডিজাইনের একটি প্রিমিয়াম শিক্ষা প্রতিষ্ঠান টেমপ্লেট।',
+    image: img('lumin'),
   },
   {
-    key: 'admin',
-    title: 'Admin Dashboard',
-    subtitle: 'শিক্ষার্থী, শিক্ষক, ফি ও রিপোর্ট নিয়ন্ত্রণ',
-    username: 'superadmin@gmail.com',
-    password: '123456',
+    title: 'Catalyst',
+    slug: 'catalyst',
+    description: 'ডায়নামিক ও প্রফেশনাল লেআউটের মাধ্যমে প্রতিষ্ঠানের তথ্য সুন্দরভাবে উপস্থাপনের জন্য তৈরি।',
+    image: img('catalyst'),
   },
   {
-    key: 'teacher',
-    title: 'Teacher Dashboard',
-    subtitle: 'হাজিরা নেওয়া, নম্বর ও রেজাল্ট এন্ট্রি',
-    username: 'teacher@email.com',
-    password: '123456',
+    title: 'Meridian',
+    slug: 'meridian',
+    description: 'এলিগ্যান্ট ও ব্যালান্সড ডিজাইনের একটি আধুনিক শিক্ষা প্রতিষ্ঠান ওয়েব টেমপ্লেট।',
+    image: img('meridian'),
   },
   {
-    key: 'student',
-    title: 'Student Dashboard',
-    subtitle: 'রুটিন, রেজাল্ট ও নোটিশ দেখা',
-    username: 'student@email.com',
-    password: '123456',
+    title: 'Horizon',
+    slug: 'horizon',
+    description: 'ফ্রেশ ও ভিজ্যুয়াল-ফোকাসড ডিজাইনের মাধ্যমে প্রতিষ্ঠানের অনলাইন উপস্থিতি তুলে ধরার জন্য তৈরি।',
+    image: img('horizon'),
+  },
+  {
+    title: 'Prism',
+    slug: 'prism',
+    description: 'স্মার্ট, কালারফুল ও আধুনিক ইন্টারফেসের একটি ইউনিক শিক্ষা প্রতিষ্ঠান টেমপ্লেট।',
+    image: img('prism'),
+  },
+  {
+    title: 'Default',
+    slug: 'default',
+    description: 'সহজ, পরিচ্ছন্ন ও বিভিন্ন ধরনের শিক্ষা প্রতিষ্ঠানের জন্য উপযোগী ডিফল্ট টেমপ্লেট।',
+    image: img('default'),
   },
 ];
 
-/** ডেমো সাইটের পূর্ণ URL — লগইন রোল হলে credentials সহ /login-এ যায় */
-export function demoUrl(role: DemoRole): string {
-  if (!role.username || !role.password) return `${DEMO_BASE_URL}${role.path ?? '/'}`;
-  const params = new URLSearchParams({ role: role.key, username: role.username, password: role.password });
-  return `${DEMO_BASE_URL}/login?${params.toString()}`;
-}
+/** templateDemoUrl('prism') → http://nondomohol.schoolsoftwarebd.test/?template_slug=prism */
+export const templateDemoUrl = (slug: string) =>
+  `${siteUrl(TEMPLATE_DEMO_SCHOOL, '/')}?${new URLSearchParams({ template_slug: slug }).toString()}`;
 
+/* ------------------------------ panel logins ------------------------------ */
+export type PanelLogin = { loginUrl: string; username: string; password: string };
+
+export const ADMIN_LOGIN: PanelLogin = {
+  loginUrl: siteUrl('admin', '/login?role=admin&username=nondomohol@gmail.com&password=12345678'),
+  username: 'nondomohol@gmail.com',
+  password: '12345678',
+};
+
+export const TEACHER_LOGIN: PanelLogin = {
+  // শিক্ষকরাও একই প্যানেল থেকে লগইন করেন; আলাদা হলে শুধু এই লাইন বদলান
+  loginUrl: siteUrl('admin', '/login'),
+  username: 'teacher@email.com',
+  password: '123456',
+};
+
+/* ------------------------------ registration ------------------------------ */
 export const SCHOOL_TYPES = [
   { value: 'primary', label: 'প্রাথমিক বিদ্যালয়' },
   { value: 'secondary', label: 'মাধ্যমিক বিদ্যালয়' },

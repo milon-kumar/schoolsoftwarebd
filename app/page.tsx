@@ -1,7 +1,11 @@
 "use client"
 
 import ClientsSection from '@/app/components/frontend/ClientsSection';
-import DemoSection from '@/app/components/frontend/DemoSection';
+import TemplatesSection from '@/app/components/frontend/TemplatesSection';
+import { AdminLoginSection, TeacherLoginSection } from '@/app/components/frontend/PanelLoginSection';
+import MobileAppSection from '@/app/components/frontend/MobileAppSection';
+import Link from "next/link";
+
 import {
   ArrowRight,
   Bell,
@@ -66,9 +70,9 @@ const HeroSection = () => {
           </p>
  
           <div data-reveal style={delay(360)} className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#demo" className="btn btn-primary">
+            <Link href="#demo" className="btn btn-primary">
               সফটওয়্যার ডেমো <Rocket className="h-5 w-5" />
-            </a>
+            </Link>
             <a href="#contact" className="btn btn-outline">
               এখনই যোগাযোগ করুন <Phone className="h-5 w-5" />
             </a>
@@ -661,7 +665,10 @@ export default function App() {
       <HeroSection />
       <StatsSection />
       <WhySection />
-      <DemoSection />
+      <TemplatesSection />
+      {/* <DemoSection /> */}
+      <AdminLoginSection />
+      {/* <TeacherLoginSection /> */}
       <ModulesSection />
       <DashboardSection />
       <WhyChooseUsSection />
@@ -669,6 +676,7 @@ export default function App() {
       <AchievementsSection />
       <VideoTutorialSection />
       <ClientsSection />
+      <MobileAppSection />
     </div>
   );
 }

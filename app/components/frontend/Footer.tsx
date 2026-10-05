@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 
 import Link from 'next/link';
+import MobileAppSection from '@/app/components/frontend/MobileAppSection';
 
 const Footer = () => {
   return (
@@ -34,6 +35,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
+      {/* <MobileAppSection /> */}
 
       {/* Footer Multi-column Section */}
       <div className="container-x">

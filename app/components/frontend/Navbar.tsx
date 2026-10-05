@@ -14,6 +14,9 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
+/* =====================================================================
+   মেনু এখানে সাজানো — নতুন পেজ/সাব-মেনু লাগলে শুধু এই array-তে যোগ করুন
+   ===================================================================== */
 type SubItem = { label: string; href: string; desc?: string; icon: LucideIcon };
 type NavItem =
   | { label: string; href: string; children?: never }
@@ -34,15 +37,18 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'প্রশ্ন উত্তর', href: '/faq', desc: 'সাধারণ প্রশ্নের উত্তর', icon: CircleHelp },
     ],
   },
+  { label: 'ব্লগ', href: '/blog' }, // /blog/… ডিটেইল পেজেও active থাকে
   { label: 'যোগাযোগ', href: '/contact-us' },
 ];
 
+/* বর্তমান URL-এর সাথে মিলিয়ে active বের করা */
 const matchPath = (pathname: string, href: string) =>
   href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
 const isItemActive = (pathname: string, item: NavItem) =>
   item.children ? item.children.some((c) => matchPath(pathname, c.href)) : matchPath(pathname, item.href);
 
+/* ============================ Desktop dropdown ============================ */
 const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children: SubItem[] }>; pathname: string }) => {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLLIElement>(null);
@@ -54,12 +60,13 @@ const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children
     window.clearTimeout(closeTimer.current);
     setOpen(true);
   };
-
+  // মাউস সরালে সাথে সাথে বন্ধ না করে একটু সময় দেয় (panel-এ পৌঁছানো সহজ হয়)
   const hide = () => {
     window.clearTimeout(closeTimer.current);
     closeTimer.current = window.setTimeout(() => setOpen(false), 120);
   };
 
+  // বাইরে ক্লিক বা Esc চাপলে বন্ধ
   useEffect(() => {
     if (!open) return;
     const onDown = (e: PointerEvent) => {
@@ -98,6 +105,8 @@ const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children
         aria-expanded={open}
         aria-controls={menuId}
         onClick={(e) => {
+          // mouse (hover আছে এমন ডিভাইস): hover-এ আগেই খুলেছে, click-এ বন্ধ না করে খোলা রাখি
+          // touch / keyboard (Enter/Space): toggle
           const mouseWithHover = e.detail > 0 && window.matchMedia('(hover: hover)').matches;
           if (mouseWithHover) show();
           else setOpen((v) => !v);
@@ -112,10 +121,12 @@ const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children
         <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
 
+      {/* pt-3: button ও panel-এর মাঝের ফাঁকা জায়গায় hover হারায় না */}
       <div
         id={menuId}
-        className={`absolute left-1/2 top-full z-30 -translate-x-1/2 pt-3 transition duration-200 ${open ? 'visible translate-y-0 opacity-100' : 'invisible pointer-events-none -translate-y-1 opacity-0'
-          }`}
+        className={`absolute left-1/2 top-full z-30 -translate-x-1/2 pt-3 transition duration-200 ${
+          open ? 'visible translate-y-0 opacity-100' : 'invisible pointer-events-none -translate-y-1 opacity-0'
+        }`}
       >
         <ul className="w-64 rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.25)]">
           {item.children.map(({ label, href, desc, icon: Icon }) => {
@@ -126,14 +137,16 @@ const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children
                   href={href}
                   aria-current={current ? 'page' : undefined}
                   onClick={() => setOpen(false)}
-                  className={`group flex items-start gap-3 rounded-xl p-2.5 transition ${current ? 'bg-[#6366F1]/10' : 'hover:bg-slate-50'
-                    }`}
+                  className={`group flex items-start gap-3 rounded-xl p-2.5 transition ${
+                    current ? 'bg-[#6366F1]/10' : 'hover:bg-slate-50'
+                  }`}
                 >
                   <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition ${current
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition ${
+                      current
                         ? 'bg-[#6366F1] text-white'
                         : 'bg-[#6366F1]/10 text-[#6366F1] group-hover:bg-[#6366F1] group-hover:text-white'
-                      }`}
+                    }`}
                   >
                     <Icon className="h-[18px] w-[18px]" />
                   </span>
@@ -153,6 +166,7 @@ const DesktopDropdown = ({ item, pathname }: { item: Extract<NavItem, { children
   );
 };
 
+/* ============================ Mobile sub-menu ============================ */
 const MobileGroup = ({
   item,
   pathname,
@@ -163,7 +177,7 @@ const MobileGroup = ({
   onNavigate: () => void;
 }) => {
   const active = isItemActive(pathname, item);
-  const [open, setOpen] = useState(active);
+  const [open, setOpen] = useState(active); // বর্তমান পেজ এর ভেতরে থাকলে আগে থেকেই খোলা
 
   return (
     <li>
@@ -171,13 +185,15 @@ const MobileGroup = ({
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition hover:bg-white/5 ${active ? 'text-white' : ''
-          }`}
+        className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition hover:bg-white/5 ${
+          active ? 'text-white' : ''
+        }`}
       >
         {item.label}
         <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </button>
-      
+
+      {/* grid-rows trick: উচ্চতা smooth ভাবে খোলে/বন্ধ হয় */}
       <div
         className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
       >
@@ -191,10 +207,11 @@ const MobileGroup = ({
                   onClick={onNavigate}
                   tabIndex={open ? undefined : -1}
                   aria-current={current ? 'page' : undefined}
-                  className={`ml-4 mt-1 flex items-center gap-3 rounded-xl border-l-2 px-4 py-2.5 text-[15px] transition ${current
+                  className={`ml-4 mt-1 flex items-center gap-3 rounded-xl border-l-2 px-4 py-2.5 text-[15px] transition ${
+                    current
                       ? 'border-[#6366F1] bg-white/5 text-white'
                       : 'border-white/10 text-slate-300 hover:bg-white/5'
-                    }`}
+                  }`}
                 >
                   <Icon className={`h-4 w-4 ${current ? 'text-[#818CF8]' : 'text-slate-400'}`} />
                   {label}
@@ -213,8 +230,10 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
 
+  // পেজ বদলালে মোবাইল মেনু বন্ধ
   useEffect(() => setMobileMenuOpen(false), [pathname]);
 
+  // একটু scroll করলেই navbar উপরে একটু সরে আসে ও shadow গাঢ় হয়
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -224,19 +243,22 @@ const Navbar = () => {
   }, []);
 
   return (
+    // fixed: scroll করলেও navbar উপরে আটকে থাকে
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-300 ${scrolled ? 'pt-2' : 'pt-4'}`}
     >
       <div className="container-x">
         <nav
           aria-label="প্রধান মেনু"
-          className={`flex items-center justify-between rounded-full border-2 border-white/80 bg-gradient-to-b from-white to-slate-200 px-4 py-3 transition-shadow duration-300 sm:px-8 sm:py-3.5 ${scrolled ? 'shadow-[0_12px_40px_-12px_rgba(15,23,42,0.45)]' : 'shadow-lg'
-            }`}
+          className={`flex items-center justify-between rounded-full border-2 border-white/80 bg-gradient-to-b from-white to-slate-200 px-4 py-3 transition-shadow duration-300 sm:px-8 sm:py-3.5 ${
+            scrolled ? 'shadow-[0_12px_40px_-12px_rgba(15,23,42,0.45)]' : 'shadow-lg'
+          }`}
         >
           <Link href="/" aria-label="School SoftwareBD — মূল পাতা" className="shrink-0">
             <Image src="/assets/frontend/ssbd-logo.webp" alt="School SoftwareBD" width={150} height={50} priority />
           </Link>
 
+          {/* Desktop Links */}
           <ul className="hidden items-center gap-1 rounded-full bg-slate-200/80 p-1.5 text-sm text-[#4B5563] lg:flex">
             {NAV_ITEMS.map((item) => {
               if (item.children) {
@@ -260,12 +282,15 @@ const Navbar = () => {
               );
             })}
           </ul>
-          
+
+          {/* Actions */}
           <div className="flex items-center gap-3 sm:gap-5">
-            <Link href="/register" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
-              যোগ দিন
+            <Link href="register#register" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
+             স্কুল রেজিস্টার করুন
             </Link>
-            <Link href="/#demo" className="hidden items-center gap-2 rounded-full bg-[#0F172A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 sm:inline-flex"
+            <Link
+              href="/#demo"
+              className="hidden items-center gap-2 rounded-full bg-[#0F172A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 sm:inline-flex"
             >
               ডেমো দেখুন <ArrowRight className="h-4 w-4" />
             </Link>
@@ -282,6 +307,7 @@ const Navbar = () => {
           </div>
         </nav>
 
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div
             id="mobile-menu"
@@ -307,8 +333,9 @@ const Navbar = () => {
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       aria-current={active ? 'page' : undefined}
-                      className={`block rounded-xl px-4 py-3 transition hover:bg-white/5 ${active ? 'bg-white/5 font-medium text-white' : ''
-                        }`}
+                      className={`block rounded-xl px-4 py-3 transition hover:bg-white/5 ${
+                        active ? 'bg-white/5 font-medium text-white' : ''
+                      }`}
                     >
                       {item.label}
                     </Link>
@@ -317,12 +344,16 @@ const Navbar = () => {
               })}
             </ul>
             <div className="mt-2 grid grid-cols-2 gap-3 border-t border-white/10 p-2 pt-4">
-              <a href="#" className="rounded-full border border-white/30 py-2.5 text-center text-sm font-medium text-white">
-                লগইন
-              </a>
-              <a href="https://web.schoolsoftwarebd.com" target='_blank' className="rounded-full bg-[#6366F1] py-2.5 text-center text-sm font-medium text-white">
+              <Link href="register#register" className="rounded-full border border-white/30 py-2.5 text-center text-sm font-medium text-white">
+                স্কুল রেজিস্টার করুন
+              </Link>
+              <Link
+                href="/#demo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-full bg-[#6366F1] py-2.5 text-center text-sm font-medium text-white"
+              >
                 ডেমো দেখুন
-              </a>
+              </Link>
             </div>
           </div>
         )}

@@ -170,12 +170,12 @@ export default function FeaturesPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#"
+            <Link
+              href="/#demo"
               className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#6366F1] px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_40px_rgba(99,102,241,0.55)] transition hover:bg-indigo-600"
             >
               ফ্রি ডেমো দেখুন <Rocket className="h-5 w-5" />
-            </a>
+            </Link>
             <a
               href="#contact"
               className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
@@ -1162,149 +1162,6 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* FOOTER & CTA */}
-      <footer
-        id="contact"
-        className="relative overflow-hidden bg-[#0F172A]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      >
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[30px] font-bold leading-[1.3] text-white md:text-[48px]">
-              আপনার শিক্ষা প্রতিষ্ঠানকে ডিজিটাল রূপান্তর করতে প্রস্তুত?
-            </h2>
-            <p className="mt-5 text-base leading-7 text-[#9CA3AF]">
-              আজই আমাদের সাথে যোগাযোগ করুন এবং ১ মাসের ফ্রি ট্রায়াল উপভোগ করুন।
-            </p>
-            <a
-              href="#"
-              className="mt-10 inline-flex items-center justify-center gap-2.5 rounded-full bg-[#6366F1] px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_40px_rgba(99,102,241,0.55)] transition hover:bg-indigo-600"
-            >
-              এখনই ডেমো রিকোয়েস্ট করুন <Rocket className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 pb-14 pt-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <Link href="/" className="flex items-center gap-1.5">
-                <svg className="h-9 w-9" viewBox="0 0 40 40" fill="none">
-                  <path d="M20 4l14 8v4H6v-4l14-8z" fill="#1e7a8c" />
-                  <rect x="9" y="17" width="4" height="13" fill="#2f9aa8" />
-                  <rect x="18" y="17" width="4" height="13" fill="#2f9aa8" />
-                  <rect x="27" y="17" width="4" height="13" fill="#2f9aa8" />
-                  <rect x="5" y="31" width="30" height="3" rx="1" fill="#3b82f6" />
-                  <path d="M5 36c5-3 10 2 15-1s10 2 15-1" stroke="#3b82f6" strokeWidth="1.5" />
-                </svg>
-                <div className="leading-none">
-                  <p className="text-[15px] font-bold text-[#2f9aa8]">
-                    SchoolSoftware<span className="text-blue-500">BD</span>
-                  </p>
-                  <p className="mt-0.5 text-[9px] text-[#9CA3AF]">www.schoolsoftwarebd.com</p>
-                </div>
-              </Link>
-              <p className="mt-5 text-[14px] text-[#9CA3AF]">
-                <span className="font-semibold text-slate-300">“School SoftwareBD”</span> বাংলাদেশের স্কুল, কলেজ, মাদ্রাসা ও কোচিং
-                সেন্টারের জন্য তৈরি একটি ক্লাউড-ভিত্তিক School Management Software। ভর্তি থেকে রেজাল্ট, ফি কালেকশন থেকে স্টাফ ম্যানেজমেন্ট — সব এক
-                জায়গায়। সম্পূর্ণ বাংলায়। বাংলাদেশের বাস্তবতার কথা মাথায় রেখে।
-              </p>
-            </div>
-
-            <div className="lg:pl-10">
-              <h3 className="text-base font-bold text-white">আমাদের সম্পর্কে</h3>
-              <ul className="mt-5 space-y-3 text-[14px] text-[#9CA3AF]">
-                <li>
-                  <Link href="/" className="transition hover:text-[#6366F1]">
-                    মূল পাতা
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/features" className="transition hover:text-[#6366F1]">
-                    মডিউল
-                  </Link>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    আমাদের সম্পর্কে
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    রিটার্ন এবং রিফান্ড নীতি
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    গোপনীয়তা নীতি
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="lg:pl-6">
-              <h3 className="text-base font-bold text-white">বৈশিষ্ট্য</h3>
-              <ul className="mt-5 space-y-3 text-[14px] text-[#9CA3AF]">
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    ব্যবহার করা সহজ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    সবসময় আপ টু ডেট
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    ডিজিটাল হাজিরা সিস্টেম
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    শিক্ষার্থীদের পড়াশোনার বেতন আদায়
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition hover:text-[#6366F1]">
-                    ইন্টিগ্রেটেড এসএমএস
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="lg:pl-6">
-              <h3 className="text-base font-bold text-white">যোগাযোগের তথ্য</h3>
-              <ul className="mt-5 space-y-4 text-[14px] text-[#9CA3AF]">
-                <li className="flex gap-2.5">
-                  <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#6366F1]" />
-                  <span>Sahara Center, 37/A, Lift 16, VIP Road, Kakrail, Dhaka</span>
-                </li>
-                <li className="flex gap-2.5">
-                  <Mail className="mt-1 h-4 w-4 shrink-0 text-[#6366F1]" />
-                  <a href="mailto:info@schoolsoftwarebd.com" className="transition hover:text-[#6366F1]">
-                    info@schoolsoftwarebd.com
-                  </a>
-                </li>
-                <li className="flex gap-2.5">
-                  <Phone className="mt-1 h-4 w-4 shrink-0 text-[#6366F1]" />
-                  <a href="tel:+8801857770000" className="transition hover:text-[#6366F1]">
-                    +৮৮০ ১৮৫৭ ৭৭০০০০
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-400/40 py-6 text-center text-[13px] text-[#9CA3AF]">
-            কপিরাইট © ২০১০ – ২০২৬, School SoftwareBD | স্বত্ব সংরক্ষিত।
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

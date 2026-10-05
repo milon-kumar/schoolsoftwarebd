@@ -16,7 +16,7 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
-const SCROLL_OFFSET = -16; // anchor-এ গিয়ে উপরে একটু ফাঁকা রাখে
+const SCROLL_OFFSET = -110; // navbar fixed — anchor-এ গেলে কনটেন্ট যেন navbar-এর নিচে ঢাকা না পড়ে
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
@@ -91,7 +91,11 @@ export default function SmoothScroll() {
       if (!link || link.target === "_blank") return;
 
       const url = new URL(link.href, window.location.href);
-      const samePage = url.origin === window.location.origin && url.pathname === window.location.pathname;
+      // query (?page=2) আলাদা হলে এটা নতুন পেজ — Next-কে navigate করতে দিই
+      const samePage =
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname &&
+        url.search === window.location.search;
       if (!samePage || !url.hash) return;
 
       // href="#" (placeholder link) — পেজ লাফ দিয়ে উপরে যাওয়া বন্ধ
