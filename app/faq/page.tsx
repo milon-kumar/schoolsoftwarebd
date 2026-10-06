@@ -16,7 +16,7 @@ import ClientsSection from '@/app/components/frontend/ClientsSection';
 import FaqAccordion, { type FaqItem } from '@/app/components/frontend/FaqAccordion';
 
 export const metadata: Metadata = {
-  title: 'FAQ - School SoftwareBD',
+  title: 'FAQ',
   description:
     'School SoftwareBD সম্পর্কে সাধারণ প্রশ্ন ও উত্তর — মূল্য, সেটআপ, ফিচার, সাপোর্ট ও ডাটা নিরাপত্তা।',
 };

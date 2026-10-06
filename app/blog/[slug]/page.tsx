@@ -1,10 +1,3 @@
-/**
- * /blog/{slug} — ব্লগ ডিটেইল
- * SEO: API-র seo{} থেকে title/description/keywords/og image, সাথে BlogPosting schema
- *
- * পেজটা static (ISR): build-এর সময় সব পোস্ট তৈরি হয়, নতুন পোস্ট প্রথম ভিজিটে তৈরি হয়,
- * আর প্রতি ৬০ সেকেন্ডে API থেকে আপডেট নেয়। ভিউ কাউন্ট ব্রাউজার থেকে হয় (LiveViews)।
- */
 import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -32,7 +25,6 @@ type Params = Promise<{ slug: string }>;
 
 export const revalidate = 60;
 
-/** build-এর সময় সব পোস্টের পেজ আগে থেকে তৈরি */
 export async function generateStaticParams() {
   const slugs = await getAllBlogSlugs();
   return slugs.map((slug) => ({ slug }));

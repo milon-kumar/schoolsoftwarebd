@@ -1,10 +1,4 @@
-/**
- * /blog — ব্লগ লিস্ট (সার্চ, ক্যাটাগরি, ট্যাগ, সর্টিং, পেজিনেশন)
- * সব ফিল্টার URL-এ থাকে:  /blog?q=exam&category=education&tags=tips,study&sort=popular&page=2
- *
- * পেজটা static (ISR) — server searchParams পড়ে না, তাই `dynamic = 'error'` থাকলেও চলে।
- * ফিল্টার ছাড়া প্রথম পাতার পোস্টগুলো HTML-এই থাকে (SEO), বাকিটা ব্রাউজারে (BlogBrowser)।
- */
+
 import { Suspense, type CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -18,8 +12,8 @@ import { BLOG_SORTS, getBlogCategories, getBlogs, getBlogTags, toBn } from '@/ap
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'ব্লগ - School SoftwareBD',
-  description: 'স্কুল ম্যানেজমেন্ট, শিক্ষা ও প্রযুক্তি নিয়ে টিপস, গাইড ও সর্বশেষ খবর — School SoftwareBD ব্লগ।',
+  title: 'Blog',
+  description: 'স্কুল ম্যানেজমেন্ট, শিক্ষা ও প্রযুক্তি নিয়ে টিপস, গাইড ও সর্বশেষ খবর — School Software BD ব্লগ।',
 };
 
 export default async function BlogPage() {

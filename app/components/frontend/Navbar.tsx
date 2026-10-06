@@ -230,10 +230,8 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
 
-  // পেজ বদলালে মোবাইল মেনু বন্ধ
   useEffect(() => setMobileMenuOpen(false), [pathname]);
 
-  // একটু scroll করলেই navbar উপরে একটু সরে আসে ও shadow গাঢ় হয়
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -243,7 +241,6 @@ const Navbar = () => {
   }, []);
 
   return (
-    // fixed: scroll করলেও navbar উপরে আটকে থাকে
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-300 ${scrolled ? 'pt-2' : 'pt-4'}`}
     >
@@ -254,8 +251,8 @@ const Navbar = () => {
             scrolled ? 'shadow-[0_12px_40px_-12px_rgba(15,23,42,0.45)]' : 'shadow-lg'
           }`}
         >
-          <Link href="/" aria-label="School SoftwareBD — মূল পাতা" className="shrink-0">
-            <Image src="/assets/frontend/ssbd-logo.webp" alt="School SoftwareBD" width={150} height={50} priority />
+          <Link href="/" aria-label="School Software BD — মূল পাতা" className="shrink-0">
+            <Image src="/assets/frontend/ssbd-logo.webp" alt="School Software BD" width={150} height={50} priority />
           </Link>
 
           {/* Desktop Links */}
@@ -285,7 +282,7 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-3 sm:gap-5">
-            <Link href="register#register" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
+            <Link href="/register#register" className="hidden text-sm font-medium text-[#4B5563] transition hover:text-[#6366F1] sm:inline">
              স্কুল রেজিস্টার করুন
             </Link>
             <Link
@@ -344,7 +341,7 @@ const Navbar = () => {
               })}
             </ul>
             <div className="mt-2 grid grid-cols-2 gap-3 border-t border-white/10 p-2 pt-4">
-              <Link href="register#register" className="rounded-full border border-white/30 py-2.5 text-center text-sm font-medium text-white">
+              <Link href="/register#register" className="rounded-full border border-white/30 py-2.5 text-center text-sm font-medium text-white">
                 স্কুল রেজিস্টার করুন
               </Link>
               <Link

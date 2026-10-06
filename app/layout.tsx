@@ -11,10 +11,12 @@ const notoBengali = Noto_Sans_Bengali({
   display: 'swap',
 });
 
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'School Software BD';
+
 export const metadata = {
   title: {
-    default: process.env.NEXT_PUBLIC_APP_NAME || 'School SoftwareBD',
-    template: `%s | ${process.env.NEXT_PUBLIC_APP_NAME || 'School SoftwareBD'}`,
+    default: APP_NAME,
+    template: `%s | ${APP_NAME}`,
   },
   description: 'স্কুল, কলেজ ও মাদ্রাসার আধুনিক সমাধান',
   icons: {

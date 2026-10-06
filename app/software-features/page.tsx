@@ -1,5 +1,3 @@
-"use client";
-
 import {
     Award,
     Banknote,
@@ -34,8 +32,8 @@ import {
     Smartphone,
     Upload
 } from "lucide-react";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 import Link from "next/link";
-import { useState } from "react";
 
 // Mock Data Interfaces
 interface AdmissionField {
@@ -142,8 +140,12 @@ const StatusPill = ({ tone, text }: { tone: string; text: string }) => {
   );
 };
 
+export const metadata: Metadata = {
+  title: 'Features',
+  description: 'স্কুল ম্যানেজমেন্ট, শিক্ষা ও প্রযুক্তি নিয়ে টিপস, গাইড ও সর্বশেষ খবর — School Software BD ফিচার।',
+};
+
 export default function FeaturesPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="bg-[#F9FAFB] font-sans text-[#4B5563] antialiased">

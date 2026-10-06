@@ -5,7 +5,7 @@ import ClientsSection from '@/app/components/frontend/ClientsSection';
 import ContactForm from '@/app/components/frontend/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - School SoftwareBD',
+  title: 'Contact Us',
   description: 'সফটওয়্যার ডেমো, প্রাইসিং বা যেকোনো তথ্যের জন্য School SoftwareBD-র সাথে যোগাযোগ করুন।',
 };
 

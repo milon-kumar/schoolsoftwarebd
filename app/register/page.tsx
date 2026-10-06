@@ -5,7 +5,7 @@ import { ArrowRight, ChevronRight, Gift, Headset, Globe, PlayCircle } from 'luci
 import SchoolRegistration from '../components/frontend/SchoolRegistration';
 
 export const metadata: Metadata = {
-  title: 'যোগ দিন - School SoftwareBD',
+  title: 'Registration',
   description:
     'আপনার স্কুল, কলেজ বা মাদ্রাসাকে School SoftwareBD-তে যুক্ত করুন — ফ্রি সাবডোমেইন, ১ মাসের ফ্রি ট্রায়াল ও ২৪/৭ সাপোর্ট।',
 };
