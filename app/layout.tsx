@@ -12,8 +12,16 @@ const notoBengali = Noto_Sans_Bengali({
 });
 
 export const metadata = {
-  title: 'School Management Software BD',
+  title: {
+    default: process.env.NEXT_PUBLIC_APP_NAME || 'School SoftwareBD',
+    template: `%s | ${process.env.NEXT_PUBLIC_APP_NAME || 'School SoftwareBD'}`,
+  },
   description: 'স্কুল, কলেজ ও মাদ্রাসার আধুনিক সমাধান',
+  icons: {
+    icon: '/assets/frontend/ssbd-fav-icon.webp',
+    shortcut: '/assets/frontend/ssbd-fav-icon.webp',
+    apple: '/assets/frontend/ssbd-fav-icon.webp',
+  },
 };
 
 export default function RootLayout({

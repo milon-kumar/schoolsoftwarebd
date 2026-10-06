@@ -22,7 +22,6 @@ const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* অন্য component থেকে smooth scroll করার জন্য (যেমন: ফর্মের ভুল ঘরে যাওয়া) */
 let activeLenis: Lenis | null = null;
 
 export function smoothScrollTo(target: HTMLElement | number, offset = SCROLL_OFFSET) {

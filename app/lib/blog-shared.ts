@@ -2,14 +2,14 @@
  * ব্লগ — types, API URL আর ফরম্যাটিং (server ও browser দুই জায়গাতেই চলে)
  * ---------------------------------------------------------------
  * .env.local:
- *   NEXT_PUBLIC_BLOG_API_BASE_URL=http://127.0.0.1:8000/api
+ *   NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000/api
  *
  * ব্রাউজার সরাসরি Laravel API কল করে (সার্চ/ফিল্টার, লাইক, ভিউ কাউন্ট) —
  * Laravel-এর config/cors.php-তে 'paths' => ['api/*'] আর allowed_origins-এ
  * আপনার সাইটের ডোমেইন (বা '*') থাকতে হবে। Laravel-এর ডিফল্ট সেটিংসে এটা আগে থেকেই আছে।
  */
 
-export const PUBLIC_BLOG_API_BASE = (process.env.NEXT_PUBLIC_BLOG_API_BASE_URL ?? 'http://cp.schoolsoftwarebd.test/api').replace(
+export const PUBLIC_BLOG_API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://cp.schoolsoftwarebd.test/api').replace(
   /\/$/,
   '',
 );

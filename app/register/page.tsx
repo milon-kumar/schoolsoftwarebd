@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     'আপনার স্কুল, কলেজ বা মাদ্রাসাকে School SoftwareBD-তে যুক্ত করুন — ফ্রি সাবডোমেইন, ১ মাসের ফ্রি ট্রায়াল ও ২৪/৭ সাপোর্ট।',
 };
 
-/* scroll reveal-এর delay (ms) */
 const delay = (ms: number) => ({ '--reveal-delay': `${ms}ms` }) as CSSProperties;
 
 const PERKS = [
@@ -19,10 +18,8 @@ const PERKS = [
   { icon: Headset, text: '২৪/৭ বাংলায় সাপোর্ট' },
 ];
 
-/* ================================ HERO ================================ */
 const JoinHero = () => (
   <section className="relative overflow-hidden bg-secondary pb-24 lg:pb-28">
-    {/* background glows + grid — সাইটের অন্য hero-র মতো */}
     <div className="pointer-events-none absolute -left-52 -top-52 h-[760px] w-[760px] rounded-full bg-primary/25 blur-[160px]" />
     <div className="pointer-events-none absolute -bottom-52 -right-52 h-[760px] w-[860px] rounded-full bg-rose-500/20 blur-[170px]" />
     <div
@@ -34,7 +31,6 @@ const JoinHero = () => (
       }}
     />
 
-    {/* Navbar layout-এ fixed, তাই উপরে navbar-এর উচ্চতা (~100px) যোগ করা */}
     <div className="container-x relative z-10 pt-44 text-center lg:pt-48">
       <span
         data-reveal
@@ -109,7 +105,6 @@ const JoinHero = () => (
   </section>
 );
 
-/* ================================ PAGE ================================ */
 export default function JoinPage() {
   return (
     <main id="top">

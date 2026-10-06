@@ -1,14 +1,5 @@
 "use client";
 
-/**
- * স্কুল রেজিস্ট্রেশন ফর্ম
- * ---------------------------------------------------------------
- * - "সাবডোমেইন চেক করুন" → /api/school/check-subdomain
- *     available হলে সেটাই বেছে নেয়, না হলে suggestion থেকে বেছে নেওয়া যায়
- * - নিজের ডোমেইন দিলে সাবডোমেইন লাগে না; না দিলে সাবডোমেইন বাধ্যতামূলক
- * - "রেজিস্ট্রেশন সম্পন্ন করুন" → /api/school/register
- * (দুটোই app/api/school/[action]/route.ts হয়ে cp.schoolsoftwarebd.com-এ যায়)
- */
 import { useState, type FormEvent } from 'react';
 import {
   AtSign,
@@ -67,7 +58,10 @@ const EMPTY: FormState = {
 };
 
 /* ---------------------------- helpers ---------------------------- */
-const REGISTRATION_API_BASE_URL = 'https://cp.schoolsoftwarebd.com/api';
+const REGISTRATION_API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://cp.schoolsoftwarebd.test/api').replace(
+  /\/$/,
+  '',
+);
 const REGISTRATION_ENDPOINT = `${REGISTRATION_API_BASE_URL}/school/register`;
 
 const toEnDigits = (v: string) => v.replace(/[০-৯]/g, (d) => String('০১২৩৪৫৬৭৮৯'.indexOf(d)));
