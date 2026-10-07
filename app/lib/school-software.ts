@@ -21,7 +21,7 @@ export const siteUrl = (subdomain: string, path = '') => `${PROTOCOL}://${subdom
 
 /* ---------------------------- frontend templates ---------------------------- */
 /** কোন ডেমো স্কুলের সাইটে টেমপ্লেট প্রিভিউ দেখানো হবে */
-export const TEMPLATE_DEMO_SCHOOL = 'nondomohol';
+export const TEMPLATE_DEMO_SCHOOL = 'demo';
 
 export type FrontendTemplate = {
   title: string;
@@ -80,8 +80,8 @@ export const templateDemoUrl = (slug: string) =>
 export type PanelLogin = { loginUrl: string; username: string; password: string };
 
 export const ADMIN_LOGIN: PanelLogin = {
-  loginUrl: siteUrl('admin', '/login?role=admin&username=nondomohol@gmail.com&password=12345678'),
-  username: 'nondomohol@gmail.com',
+  loginUrl: siteUrl('admin', '/login?role=admin&username=demo@gmail.com&password=12345678'),
+  username: 'demo@gmail.com',
   password: '12345678',
 };
 
